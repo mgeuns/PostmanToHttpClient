@@ -92,7 +92,7 @@ fun createHttpRequest(request: Request, file: String, name: String) {
             fileToEdit.appendText("Content-Type: multipart/form-data; boundary=boundary\n\n")
 
             request.body.formdata!!.forEach { formdata ->
-                fileToEdit.appendText("--boundary\n")
+                fileToEdit.appendText("\n--boundary\n")
 
                 if (formdata.type == "text" || formdata.type == "default" || formdata.contentType == "application/json") {
                     fileToEdit.appendText( "Content-Disposition: form-data; name=\"${formdata.key}\"\n")
@@ -105,8 +105,8 @@ fun createHttpRequest(request: Request, file: String, name: String) {
                     println("NOT IMPLEMENTED")
                 }
                 fileToEdit.appendText("\n")
-//                fileToEdit.appendText("--boundary")
-//                fileToEdit.appendText("\n")
+                fileToEdit.appendText("--boundary")
+                fileToEdit.appendText("\n")
             }
 
 
